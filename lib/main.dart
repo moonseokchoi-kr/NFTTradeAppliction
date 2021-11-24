@@ -11,6 +11,8 @@ Future<void> main() async {
   await initService();
   await Hive.initFlutter();
   await Hive.openBox('initApp');
+  //Debug 전용
+  await Hive.box('initApp').clear();
   runApp(MyApp());
 }
 

@@ -42,17 +42,19 @@ class LoginService extends GetxService {
     final pwd = Hive.box('initApp').get('password');
     final token = Hive.box('initApp').get('access_token');
 
-    SignUpRequset requset = SignUpRequset(
-        platform: 'google',
-        info: Info(
-          userId: id,
-          password: pwd,
-          token: token,
-        ));
-    SignUpResponse response = await _repository.SignUpMoonStone(requset);
-    if (response.result)
-      Hive.box('initApp').put('user_wallet', 'wallet_address');
-    return response.result;
+    // SignUpRequset requset = SignUpRequset(
+    //     platform: 'google',
+    //     info: Info(
+    //       userId: id,
+    //       password: pwd,
+    //       token: token,
+    //     ));
+    // SignUpResponse response = await _repository.SignUpMoonStone(requset);
+    // if (response.result)
+    //   Hive.box('initApp').put('user_wallet', 'wallet_address');
+    // return response.result;
+
+    return true;
   }
 
   Future<bool> signInWithGoogle() async {
@@ -74,22 +76,22 @@ class LoginService extends GetxService {
       // print(payload);
 
       // check the user exisit in server
-      Hive.box('initApp').put('google_access_token', googleAuth?.accessToken);
-      SignInRequest req = SignInRequest(
-          platform: 'google',
-          user: SnsUser(id: googleUser?.id, token: googleAuth?.accessToken));
-      SignInResponse response = await _repository.SignInMoonStone(req);
-      Hive.box('initApp').put('moonstone_access_token', response.token);
-      return response.result;
+      // Hive.box('initApp').put('google_access_token', googleAuth?.accessToken);
+      // SignInRequest req = SignInRequest(
+      //     platform: 'google',
+      //     user: SnsUser(id: googleUser?.id, token: googleAuth?.accessToken));
+      // SignInResponse response = await _repository.SignInMoonStone(req);
+      // Hive.box('initApp').put('moonstone_access_token', response.token);
+      // return response.result;
     } catch (e) {
       print(e);
       return false;
     }
-    // final id = Hive.box('initApp').get('user_id');
-    // final pwd = Hive.box('initApp').get('password');
+    final id = Hive.box('initApp').get('user_id');
+    final pwd = Hive.box('initApp').get('password');
 
-    // if (null != id && null != pwd)
-    //   return true;
+    if (null != id && null != pwd) return true;
+    return false;
   }
 
   void parseJwtToken() {

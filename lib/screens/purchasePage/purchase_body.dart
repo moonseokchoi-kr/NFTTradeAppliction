@@ -2,9 +2,11 @@ import 'package:application/components/default_button.dart';
 import 'package:application/constants.dart';
 import 'package:application/models/test_model.dart';
 import 'package:application/screens/details/components/product_images.dart';
+import 'package:application/screens/process/transfer_process.dart';
 import 'package:application/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 class PurchaseBody extends StatelessWidget {
   const PurchaseBody({Key? key, required this.product}) : super(key: key);
@@ -132,7 +134,46 @@ class PurchaseBody extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: DefaultButton(
               text: "Buy",
-              press: () => {},
+              press: () => {
+                Get.defaultDialog(
+                    title: 'Confirm',
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Divider(
+                          height: 1,
+                        ),
+                        Text(
+                          "Product Name: ${product.title} \namount: ${product.popularity * 1.1} MST",
+                          style: TextStyle(color: kTextColor, fontSize: 16),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            TextButton(
+                              onPressed: () => {Get.back()},
+                              child: Text(
+                                "Cancle",
+                                style: TextStyle(
+                                    color: kPrimaryColor, fontSize: 16),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () => {
+                                Get.offNamed(TransferProcessScreen.routeName)
+                              },
+                              child: Text(
+                                "OK",
+                                style:
+                                    TextStyle(color: kTextColor, fontSize: 16),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    radius: 10.0)
+              },
               radius: 15,
             ),
           )

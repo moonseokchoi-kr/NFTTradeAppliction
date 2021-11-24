@@ -8,14 +8,13 @@ class SellingBody extends StatefulWidget {
   SellingBody({Key? key, required this.product}) : super(key: key);
 
   Result product;
-
+  static double? price;
   @override
   _SellingBodyState createState() => _SellingBodyState();
 }
 
 class _SellingBodyState extends State<SellingBody> {
   TextEditingController _controller = TextEditingController();
-  double? price;
 
   @override
   void initState() {
@@ -33,7 +32,7 @@ class _SellingBodyState extends State<SellingBody> {
 
   void _changeValue() {
     setState(() {
-      price = double.tryParse(_controller.text);
+      SellingBody.price = double.tryParse(_controller.text);
     });
   }
 
@@ -106,7 +105,7 @@ class _SellingBodyState extends State<SellingBody> {
                         ),
                       ),
                       Text(
-                        "${(price == null ? 0 : price! * 0.1).floor()} MST",
+                        "${(SellingBody.price == null ? 0 : SellingBody.price! * 0.1).floor()} MST",
                         style: TextStyle(
                           color: kTextColor,
                           fontWeight: FontWeight.bold,
@@ -127,7 +126,7 @@ class _SellingBodyState extends State<SellingBody> {
                         ),
                       ),
                       Text(
-                        "${(price == null ? 0 : price! * 1.1).round()} MST",
+                        "${(SellingBody.price == null ? 0 : SellingBody.price! * 1.1).round()} MST",
                         style: TextStyle(
                           color: kTextColor,
                           fontWeight: FontWeight.bold,
