@@ -33,7 +33,7 @@ class CustomAppBar extends StatelessWidget {
                       backgroundColor: Colors.white,
                       padding: EdgeInsets.zero,
                     ),
-                    onPressed: () => Get.offNamed(Get.previousRoute),
+                    onPressed: () => Get.off(Get.previousRoute),
                     child: SvgPicture.asset(
                       "assets/icons/Back ICon.svg",
                       height: 15,

@@ -11,12 +11,12 @@ String signUpRequsetToJson(SignUpRequset data) => json.encode(data.toJson());
 
 class SignUpRequset {
   SignUpRequset({
-    platform,
-    info,
+    required this.platform,
+    required this.info,
   });
 
-  late String _platform;
-  late Info _info;
+  String platform;
+  Info info;
 
   factory SignUpRequset.fromJson(Map<String, dynamic> json) => SignUpRequset(
         platform: json["platform"],
@@ -24,31 +24,35 @@ class SignUpRequset {
       );
 
   Map<String, dynamic> toJson() => {
-        "platform": _platform,
-        "info": _info.toJson(),
+        "platform": platform,
+        "user_info": info.toJson(),
       };
 }
 
 class Info {
   Info({
-    token,
-    userId,
-    password,
+    required this.token,
+    required this.userId,
+    required this.email,
+    required this.password,
   });
 
-  late String _token;
-  late String _userId;
-  late String _password;
+  String token;
+  String userId;
+  String email;
+  String password;
 
   factory Info.fromJson(Map<String, dynamic> json) => Info(
         token: json["token"],
-        userId: json["user id"],
+        userId: json["user_id"],
+        email: json["email"],
         password: json["password"],
       );
 
   Map<String, dynamic> toJson() => {
-        "token": _token,
-        "user id": _userId,
-        "password": _password,
+        "token": token,
+        "user_id": userId,
+        "email": email,
+        "password": password,
       };
 }

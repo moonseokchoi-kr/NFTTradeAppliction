@@ -1,4 +1,5 @@
 import 'package:application/screens/cart/cart_screen.dart';
+import 'package:application/screens/login_success/signup_success_screen.dart';
 import 'package:application/screens/setting/setting_screen.dart';
 import 'package:application/screens/wallet/wallet_screen.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +69,7 @@ class CustomBottomNavBar extends StatelessWidget {
             IconButton(
               icon: SvgPicture.asset("assets/icons/Heart Icon.svg"),
               onPressed: () => Get.to(
-                () => CartScreen(),
+                () => SignUpSuccessScreen(),
                 transition: Transition.cupertino,
               ),
             ),

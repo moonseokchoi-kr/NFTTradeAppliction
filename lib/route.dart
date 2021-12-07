@@ -9,7 +9,7 @@ import 'package:application/screens/complete_profile/complete_profile_screen.dar
 import 'package:application/screens/details/details_screen.dart';
 import 'package:application/screens/forgot_password/forgot_password_screen.dart';
 import 'package:application/screens/home/home_screen.dart';
-import 'package:application/screens/login_success/login_success_screen.dart';
+import 'package:application/screens/login_success/signup_success_screen.dart';
 import 'package:application/screens/otp/otp_screen.dart';
 import 'package:application/screens/setting/setting_screen.dart';
 import 'package:application/screens/wallet/components/nft_detail_screen.dart';
@@ -37,8 +37,8 @@ final routes = [
     page: () => ForgotPasswordScreen(),
   ),
   GetPage(
-    name: LoginSuccessScreen.routeName,
-    page: () => LoginSuccessScreen(),
+    name: SignUpSuccessScreen.routeName,
+    page: () => SignUpSuccessScreen(),
   ),
   GetPage(
     name: AccountScreen.routeName,

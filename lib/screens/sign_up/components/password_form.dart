@@ -2,7 +2,7 @@ import 'package:application/components/default_button.dart';
 import 'package:application/components/form_error.dart';
 import 'package:application/constants.dart';
 import 'package:application/helper/encrypt.dart';
-import 'package:application/screens/login_success/login_success_screen.dart';
+import 'package:application/screens/login_success/signup_success_screen.dart';
 import 'package:application/screens/process/sign_in_process.dart';
 import 'package:application/screens/process/sign_up_process.dart';
 import 'package:application/size_config.dart';

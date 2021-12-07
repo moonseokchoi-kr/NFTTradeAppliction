@@ -10,27 +10,39 @@ import 'dart:convert';
 
 class MoonStoneSignServiceProvider {
   Client client = Client();
-  final _uri = Uri.parse("");
+  String _url = "http://13.125.152.144:5555";
+
+  final header = {
+    "Content-type": "application/json",
+  };
   Future<SignUpResponse> SignUp(SignUpRequset req) async {
     print('entered sign_up');
-    final response = await client.post(_uri, body: jsonEncode(req.toJson()));
+    final uri = Uri.parse(_url + "/user/register");
+    final body = jsonEncode(req.toJson());
+    //final test =
+    //    """{ "platform" : "google", "userinfo" :{ "token" : "", "email" : "hellssowordsdld@bye.com", "user_id" : "10101023112323", "password" : "email" }}""";
+    print(body);
+    final response = await client.post(uri, headers: header, body: body);
     print(response.body.toString());
     if (200 == response.statusCode) {
-      return signUpResponseFromJson(jsonDecode(response.body));
+      return signUpResponseFromJson(response.body);
     } else {
-      return signUpResponseFromJson(jsonDecode(response.body));
+      return signUpResponseFromJson(response.body);
     }
   }
 
   Future<SignInResponse> SignIn(SignInRequest req) async {
     print('entered sign_in');
+    final uri = Uri.parse(_url + "/user/validation");
+    final body = jsonEncode(req.toJson());
 
-    final response = await client.post(_uri, body: jsonEncode(req.toJson()));
+    print(body);
+    final response = await client.post(uri, headers: header, body: body);
     print(response.body.toString());
     if (200 == response.statusCode) {
-      return signInResponseFromJson(jsonDecode(response.body));
+      return signInResponseFromJson(response.body);
     } else {
-      return signInResponseFromJson(jsonDecode(response.body));
+      return signInResponseFromJson(response.body);
     }
   }
 }
