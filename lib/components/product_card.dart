@@ -1,4 +1,4 @@
-import 'package:application/models/test_model.dart';
+import 'package:application/models/Item/item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 //import 'package:application/models/Product.dart';
@@ -14,12 +14,13 @@ class ProductCard extends StatelessWidget {
     this.aspectRetio = 1.02,
     required this.product,
     this.isVisible = true,
+    required this.tag,
   }) : super(key: key);
 
   final double width, aspectRetio;
-  final Result product;
+  final Item product;
   final bool isVisible;
-
+  final String tag;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -45,9 +46,8 @@ class ProductCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Hero(
-                    tag: product.id.toString(),
-                    child: Image.network(
-                        'https://image.tmdb.org/t/p/w185${product.poster_path}'),
+                    tag: tag,
+                    child: Image.network(product.imagePath.toString()),
                   ),
                 ),
               ),
@@ -57,7 +57,7 @@ class ProductCard extends StatelessWidget {
               ),
               Visibility(
                 child: Text(
-                  product.title,
+                  product.title!,
                   style: TextStyle(color: Colors.black),
                   maxLines: 2,
                 ),
@@ -68,7 +68,7 @@ class ProductCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "\$${product.popularity}",
+                      "\$${product.price}",
                       style: TextStyle(
                         fontSize: getProportionateScreenWidth(30),
                         fontWeight: FontWeight.w600,
@@ -83,14 +83,14 @@ class ProductCard extends StatelessWidget {
                         height: getProportionateScreenWidth(40),
                         width: getProportionateScreenWidth(40),
                         decoration: BoxDecoration(
-                          color: product.video
+                          color: product.sellState == 0
                               ? kPrimaryColor.withOpacity(0.15)
                               : kSecondaryColor.withOpacity(0.1),
                           shape: BoxShape.circle,
                         ),
                         child: SvgPicture.asset(
                           "assets/icons/Heart Icon_2.svg",
-                          color: product.video
+                          color: product.sellState == 0
                               ? Color(0xFFFF4848)
                               : Color(0xFFDBDEE4),
                         ),

@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive/hive.dart';
-import 'package:jwt_decode/jwt_decode.dart';
 
 class LoginService extends GetxService {
   FirebaseApp? firebaseApp;
@@ -86,7 +85,7 @@ class LoginService extends GetxService {
     SignInRequest req = SignInRequest(
         platform: 'google',
         user: SnsUser(
-          id: "108511158565396470490",
+          id: googleUser!.id.toString(),
           token: googleAuth!.accessToken!,
         ));
     SignInResponse response = await _repository.SignInMoonStone(req);

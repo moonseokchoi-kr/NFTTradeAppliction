@@ -1,5 +1,3 @@
-import 'package:application/enums.dart';
-
 import 'Item/item.dart';
 
 class Post {

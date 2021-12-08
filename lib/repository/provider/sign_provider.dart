@@ -1,6 +1,3 @@
-//TODO: 회원가입 및 로그인 정보 서비스 만들기
-//TODO: 회원가입 성공화면 만들기, Favortie화면 수정하기
-
 import 'package:application/models/sign_in/sign_in_requset.dart';
 import 'package:application/models/sign_in/sign_in_response.dart';
 import 'package:application/models/sign_up/sign_up_requset.dart';

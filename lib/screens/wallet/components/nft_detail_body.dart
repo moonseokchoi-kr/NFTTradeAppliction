@@ -1,6 +1,6 @@
 import 'package:application/components/product_card.dart';
 import 'package:application/components/token_info_card.dart';
-import 'package:application/controllers/item_api_controller.dart';
+import 'package:application/controllers/user_post_api_controller.dart';
 import 'package:application/models/Token.dart';
 import 'package:application/screens/details/details_screen.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class NFTDetailBody extends StatelessWidget {
     required this.nft,
   }) : super(key: key);
   final NFT nft;
-  ItemControll _itemControll = Get.put(ItemControll());
+  UserPostController _itemControll = Get.put(UserPostController());
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,7 +26,7 @@ class NFTDetailBody extends StatelessWidget {
           () => TokenInfoCard(
             name: nft.nftName,
             address: nft.address,
-            amount: _itemControll.items.value.results.length.toDouble(),
+            amount: _itemControll.items.value.content.length.toDouble(),
           ),
         ),
         SizedBox(
@@ -55,12 +55,13 @@ class NFTDetailBody extends StatelessWidget {
                         return GestureDetector(
                           onTap: () => Get.toNamed(DetailsScreen.routeName),
                           child: ProductCard(
-                            product: _itemControll.items.value.results[index],
+                            tag: "nftCard$index",
+                            product: _itemControll.items.value.content[index],
                             isVisible: false,
                           ),
                         );
                       },
-                      childCount: _itemControll.items.value.results.length,
+                      childCount: _itemControll.items.value.content.length,
                     ),
                   ),
                 ],

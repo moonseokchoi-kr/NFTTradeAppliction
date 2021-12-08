@@ -1,4 +1,5 @@
-import 'package:application/models/test_model.dart';
+import 'package:application/models/Item/item.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
@@ -11,7 +12,7 @@ class ProductImages extends StatefulWidget {
     this.imageSize = 238,
   }) : super(key: key);
 
-  final Result product;
+  final Item product;
   final double imageSize;
   @override
   _ProductImagesState createState() => _ProductImagesState();
@@ -30,7 +31,7 @@ class _ProductImagesState extends State<ProductImages> {
             child: Hero(
               tag: widget.product.id.toString(),
               child: Image.network(
-                'https://image.tmdb.org/t/p/w185${widget.product.poster_path}',
+                widget.product.imagePath.toString(),
                 fit: BoxFit.fitHeight,
                 errorBuilder: (context, error, stackTrace) =>
                     Icon(Icons.error_outline),
@@ -69,8 +70,7 @@ class _ProductImagesState extends State<ProductImages> {
           border: Border.all(
               color: kPrimaryColor.withOpacity(selectedImage == index ? 1 : 0)),
         ),
-        child: Image.network(
-            'https://image.tmdb.org/t/p/w185${widget.product.poster_path}'),
+        child: Image.network(widget.product.imagePath.toString()),
       ),
     );
   }

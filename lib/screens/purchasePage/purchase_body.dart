@@ -1,6 +1,6 @@
 import 'package:application/components/default_button.dart';
 import 'package:application/constants.dart';
-import 'package:application/models/test_model.dart';
+import 'package:application/models/Item/item.dart';
 import 'package:application/screens/details/components/product_images.dart';
 import 'package:application/screens/process/transfer_process.dart';
 import 'package:application/size_config.dart';
@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 class PurchaseBody extends StatelessWidget {
   const PurchaseBody({Key? key, required this.product}) : super(key: key);
 
-  final Result product;
+  final Item product;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -73,7 +73,7 @@ class PurchaseBody extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "${product.popularity * 1.1} MST",
+                      "${product.price! * 1.1} MST",
                       style: TextStyle(
                         color: kTextColor,
                         fontWeight: FontWeight.bold,
@@ -94,7 +94,7 @@ class PurchaseBody extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "${(product.popularity * 0.1).floor()} MST",
+                      "${(product.price! * 0.1).floor()} MST",
                       style: TextStyle(
                         color: kTextColor,
                         fontWeight: FontWeight.bold,
@@ -144,7 +144,7 @@ class PurchaseBody extends StatelessWidget {
                           height: 1,
                         ),
                         Text(
-                          "Product Name: ${product.title} \namount: ${product.popularity * 1.1} MST",
+                          "Product Name: ${product.title} \namount: ${product.price! * 1.1} MST",
                           style: TextStyle(color: kTextColor, fontSize: 16),
                         ),
                         Row(

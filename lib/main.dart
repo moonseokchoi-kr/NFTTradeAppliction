@@ -12,7 +12,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   await Hive.openBox('initApp');
   //Debug 전용
-  await Hive.box('initApp').clear();
+  //await Hive.box('initApp').clear();
   runApp(MyApp());
 }
 

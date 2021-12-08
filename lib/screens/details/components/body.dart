@@ -1,4 +1,4 @@
-import 'package:application/models/test_model.dart';
+import 'package:application/models/Item/item.dart';
 import 'package:flutter/material.dart';
 
 import 'product_description.dart';
@@ -6,7 +6,7 @@ import 'top_rounded_container.dart';
 import 'product_images.dart';
 
 class Body extends StatelessWidget {
-  final Result product;
+  final Item product;
 
   const Body({Key? key, required this.product}) : super(key: key);
 
@@ -32,7 +32,7 @@ class ProductDetailTab extends StatelessWidget {
     required this.product,
   }) : super(key: key);
 
-  final Result product;
+  final Item product;
 
   @override
   Widget build(BuildContext context) {

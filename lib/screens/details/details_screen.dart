@@ -1,6 +1,6 @@
+import 'package:application/models/Item/item.dart';
 import 'package:application/screens/Selling/selling_screen.dart';
 import 'package:application/components/default_button.dart';
-import 'package:application/models/test_model.dart';
 import 'package:application/screens/purchasePage/purchase.dart';
 import 'package:application/screens/wallet/components/nft_detail_screen.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +46,7 @@ class DetailsScreen extends StatelessWidget {
 }
 
 class ProductDetailsArguments {
-  final Result product;
+  final Item product;
   final String? route;
   ProductDetailsArguments({required this.product, required this.route});
 }

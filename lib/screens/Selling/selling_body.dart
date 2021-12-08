@@ -1,5 +1,5 @@
 import 'package:application/constants.dart';
-import 'package:application/models/test_model.dart';
+import 'package:application/models/Item/item.dart';
 import 'package:application/screens/details/components/product_images.dart';
 import 'package:application/size_config.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class SellingBody extends StatefulWidget {
   SellingBody({Key? key, required this.product}) : super(key: key);
 
-  Result product;
+  Item product;
   static double? price;
   @override
   _SellingBodyState createState() => _SellingBodyState();

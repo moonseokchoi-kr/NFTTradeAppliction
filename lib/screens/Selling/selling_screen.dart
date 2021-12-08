@@ -16,7 +16,7 @@ class SellingScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: TitleText(
-          title: arguments.product.title,
+          title: arguments.product.title.toString(),
           fontSize: 40,
         ),
       ),

@@ -1,7 +1,5 @@
-import 'package:application/controllers/item_api_controller.dart';
 import 'package:application/models/Token.dart';
 import 'package:application/arguments/arguments.dart';
-import 'package:application/models/test_model.dart';
 import 'package:application/screens/wallet/components/nft_detail_screen.dart';
 import 'package:application/screens/wallet/components/token_detail.dart';
 import 'package:application/size_config.dart';
@@ -39,7 +37,6 @@ class _CustomWalletTabBarState extends State<CustomWalletTabBar>
     super.dispose();
   }
 
-  ItemControll itemControll = Get.put(ItemControll());
   @override
   Widget build(BuildContext context) {
     return Column(

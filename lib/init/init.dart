@@ -2,7 +2,6 @@ import 'package:application/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 
 import '../size_config.dart';
 

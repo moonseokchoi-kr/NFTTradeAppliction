@@ -1,20 +1,19 @@
-import 'package:application/models/test_model.dart';
-import 'package:application/repository/test_repository.dart';
+import 'package:application/models/Post/post_response.dart';
+import 'package:application/repository/post_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-int page = 1;
+int page = 0;
 
-class ItemControll extends GetxController {
-  final items = ItemModel().obs;
-  final _repository = Repository();
+class PostController extends GetxController {
+  final items = PostResponse().obs;
+  final _repository = MoonstonePostRepository();
   ScrollController scrollController = ScrollController();
 
-  _fetchNextMovies() async {
-    ItemModel itemModel = await _repository.fetchNextMovies(page);
-    ++page;
+  _fetchPostList() async {
+    PostResponse itemModel = await _repository.getPostListWithPage(page);
     items.update((val) {
-      if (val != null) val.results.addAll(itemModel.results);
+      if (val != null) val.content.addAll(itemModel.content);
     });
   }
 
@@ -23,9 +22,9 @@ class ItemControll extends GetxController {
       if (scrollController.position.pixels ==
           scrollController.position.minScrollExtent) {
         items.update((val) {
-          if (val != null) val.results.clear();
-          page = 1;
-          _fetchNextMovies();
+          if (val != null) val.content.clear();
+          page = 0;
+          _fetchPostList();
         });
       }
     });
@@ -35,17 +34,22 @@ class ItemControll extends GetxController {
     scrollController.addListener(() {
       if (scrollController.position.pixels ==
           scrollController.position.maxScrollExtent) {
-        _fetchNextMovies();
+        ++page;
+        _fetchPostList();
       }
     });
   }
 
   @override
   void onInit() {
-    _fetchNextMovies();
+    _fetchPostList();
     _refreshEvent();
     _updateEvent();
     super.onInit();
+  }
+
+  void onReady() {
+    _fetchPostList();
   }
 
   @override
