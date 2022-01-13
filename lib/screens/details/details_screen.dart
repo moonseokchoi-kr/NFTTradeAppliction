@@ -1,4 +1,4 @@
-import 'package:application/models/Item/item.dart';
+import 'package:application/models/item.dart';
 import 'package:application/screens/Selling/selling_screen.dart';
 import 'package:application/components/default_button.dart';
 import 'package:application/screens/purchasePage/purchase.dart';

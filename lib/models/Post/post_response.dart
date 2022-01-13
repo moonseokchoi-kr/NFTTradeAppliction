@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:application/models/Item/item.dart';
+import 'package:application/models/item.dart';
 
 PostResponse postResponseFromJson(String str) =>
     PostResponse.fromJson(json.decode(str));

@@ -1,6 +1,6 @@
 import 'package:application/components/default_button.dart';
 import 'package:application/constants.dart';
-import 'package:application/models/Item/item.dart';
+import 'package:application/models/item.dart';
 import 'package:application/screens/details/components/product_images.dart';
 import 'package:application/screens/process/transfer_process.dart';
 import 'package:application/size_config.dart';
@@ -160,7 +160,8 @@ class PurchaseBody extends StatelessWidget {
                             ),
                             TextButton(
                               onPressed: () => {
-                                Get.offNamed(TransferProcessScreen.routeName)
+                                Get.offNamed(TransferProcessScreen.routeName,
+                                    arguments: {"item": product})
                               },
                               child: Text(
                                 "OK",

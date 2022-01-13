@@ -1,5 +1,6 @@
 import 'package:application/screens/Selling/selling_screen.dart';
 import 'package:application/init/init.dart';
+import 'package:application/screens/process/item_process.dart';
 import 'package:application/screens/process/sign_in_process.dart';
 import 'package:application/screens/process/sign_up_process.dart';
 import 'package:application/screens/process/transfer_process.dart';
@@ -111,4 +112,8 @@ final routes = [
     name: SignUpProcessScreen.routeName,
     page: () => SignUpProcessScreen(),
   ),
+  GetPage(
+    name: ItemProcessScreen.routeName,
+    page: () => ItemProcessScreen(),
+  )
 ];

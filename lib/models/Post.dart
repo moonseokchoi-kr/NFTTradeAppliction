@@ -1,4 +1,4 @@
-import 'Item/item.dart';
+import 'item.dart';
 
 class Post {
   Post({

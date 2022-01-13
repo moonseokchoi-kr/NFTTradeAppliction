@@ -1,3 +1,4 @@
+import 'package:application/controllers/maket_controller.dart';
 import 'package:application/controllers/post_api_controller.dart';
 
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class PopularProducts extends StatelessWidget {
   PopularProducts(this.title, this.rot);
   final String title;
   final Axis rot;
-  PostController itemControll = Get.put(PostController());
+  MarketController _itemControll = Get.put(MarketController());
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,11 +27,11 @@ class PopularProducts extends StatelessWidget {
           () => SingleChildScrollView(
             child: Row(
               children: [
-                ...List.generate(itemControll.items.value.content.length,
+                ...List.generate(_itemControll.items.value.content.length,
                     (index) {
                   return ProductCard(
                       tag: "nftcard$index",
-                      product: itemControll.items.value.content[index]);
+                      product: _itemControll.items.value.content[index]);
                 })
               ],
             ),

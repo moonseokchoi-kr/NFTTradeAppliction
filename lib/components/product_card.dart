@@ -1,4 +1,4 @@
-import 'package:application/models/Item/item.dart';
+import 'package:application/models/item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 //import 'package:application/models/Product.dart';

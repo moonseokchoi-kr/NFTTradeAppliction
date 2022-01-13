@@ -9,7 +9,6 @@ class Item {
     this.id,
     this.title,
     this.userId,
-    this.itemId,
     this.sellState,
     this.price,
     this.createdDate,
@@ -25,7 +24,6 @@ class Item {
   int? id;
   String? title;
   int? userId;
-  int? itemId;
   int? sellState;
   int? price;
   DateTime? createdDate;
@@ -41,7 +39,6 @@ class Item {
         id: json["id"] == null ? null : json["id"],
         title: json["title"] == null ? null : json["title"],
         userId: json["user_id"] == null ? null : json["user_id"],
-        itemId: json["item_id"] == null ? null : json["item_id"],
         sellState: json["sell_state"] == null ? null : json["sell_state"],
         price: json["price"] == null ? null : json["price"],
         createdDate: json["createdDate"] == null
@@ -63,7 +60,6 @@ class Item {
         "id": id == null ? null : id,
         "title": title == null ? null : title,
         "user_id": userId == null ? null : userId,
-        "item_id": itemId == null ? null : itemId,
         "sell_state": sellState == null ? null : sellState,
         "price": price == null ? null : price,
         "createdDate":

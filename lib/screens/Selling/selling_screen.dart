@@ -49,7 +49,13 @@ class SellingScreen extends StatelessWidget {
                           ),
                         ),
                         TextButton(
-                          onPressed: () => {},
+                          onPressed: () => {
+                            Get.toNamed("/itemProcess", arguments: {
+                              "item": arguments.product,
+                              "price": SellingBody.price,
+                            }),
+                            SellingBody.price = 0
+                          },
                           child: Text(
                             "OK",
                             style: TextStyle(color: kTextColor, fontSize: 16),
