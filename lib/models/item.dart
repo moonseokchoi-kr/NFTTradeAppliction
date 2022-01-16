@@ -25,7 +25,7 @@ class Item {
   String? title;
   int? userId;
   int? sellState;
-  int? price;
+  double? price;
   DateTime? createdDate;
   String? nftDescription;
   String? nftHash;

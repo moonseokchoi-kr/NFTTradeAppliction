@@ -26,46 +26,46 @@ class SellingScreen extends StatelessWidget {
           text: "Register",
           press: () => {
             Get.defaultDialog(
-                title: 'Confirm',
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Divider(
-                      height: 1,
-                    ),
-                    Text(
-                      "Are you sure start selling this item?",
-                      style: TextStyle(color: kTextColor, fontSize: 16),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        TextButton(
-                          onPressed: () => {},
-                          child: Text(
-                            "Cancle",
-                            style:
-                                TextStyle(color: kPrimaryColor, fontSize: 16),
-                          ),
+              title: 'Confirm',
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Divider(
+                    height: 1,
+                  ),
+                  Text(
+                    "Are you sure start selling this item?",
+                    style: TextStyle(color: kTextColor, fontSize: 16),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      TextButton(
+                        onPressed: () => {Get.back()},
+                        child: Text(
+                          "Cancle",
+                          style: TextStyle(color: kPrimaryColor, fontSize: 16),
                         ),
-                        TextButton(
-                          onPressed: () => {
-                            Get.toNamed("/itemProcess", arguments: {
-                              "item": arguments.product,
-                              "price": SellingBody.price,
-                            }),
-                            SellingBody.price = 0
-                          },
-                          child: Text(
-                            "OK",
-                            style: TextStyle(color: kTextColor, fontSize: 16),
-                          ),
+                      ),
+                      TextButton(
+                        onPressed: () => {
+                          Get.toNamed("/itemProcess", arguments: {
+                            "item": arguments.product,
+                            "price": SellingBody.price,
+                          }),
+                          SellingBody.price = 0
+                        },
+                        child: Text(
+                          "OK",
+                          style: TextStyle(color: kTextColor, fontSize: 16),
                         ),
-                      ],
-                    )
-                  ],
-                ),
-                radius: 10.0)
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              radius: 10.0,
+            )
           },
           radius: 5,
         ),

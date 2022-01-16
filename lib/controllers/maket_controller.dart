@@ -13,9 +13,17 @@ class MarketController extends GetxController {
   final items = PostResponse().obs;
   ScrollController scrollController = ScrollController();
 
+  initPostList() async {
+    items.update((val) {
+      if (val != null) val.content.clear();
+      page = 0;
+      _fetchPostList();
+    });
+  }
+
   _fetchPostList() async {
-    PostResponse itemModel = await _repository.getMarketItemList(
-        "0xbc7cc9517400cff0ec953efb585e424301a395b0", page);
+    PostResponse itemModel =
+        await _repository.getMarketItemList(_address, page);
     items.update((val) {
       if (val != null) val.content.addAll(itemModel.content);
     });
@@ -25,11 +33,7 @@ class MarketController extends GetxController {
     scrollController.addListener(() {
       if (scrollController.position.pixels ==
           scrollController.position.minScrollExtent) {
-        items.update((val) {
-          if (val != null) val.content.clear();
-          page = 0;
-          _fetchPostList();
-        });
+        initPostList();
       }
     });
   }
@@ -46,7 +50,6 @@ class MarketController extends GetxController {
 
   @override
   void onInit() {
-    _fetchPostList();
     _refreshEvent();
     _updateEvent();
     super.onInit();

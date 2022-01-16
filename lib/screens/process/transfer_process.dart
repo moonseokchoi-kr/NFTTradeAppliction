@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:application/constants.dart';
 import 'package:application/controllers/item_controller.dart';
 import 'package:application/screens/wallet/components/token_trasfer.dart';
@@ -40,12 +42,15 @@ class _TransferProcessScreenState extends State<TransferProcessScreen> {
             } else {
               SchedulerBinding.instance?.addPostFrameCallback((_) {
                 Get.offNamed(WalletScreen.routeName);
-                Get.snackbar(
-                  "Transfer Success",
-                  snapshot.data!,
-                  backgroundColor: Color.fromARGB(100, 109, 116, 104),
-                  snackPosition: SnackPosition.BOTTOM,
-                );
+                final json = jsonDecode(snapshot.data!);
+                if (json['result']) {
+                  Get.snackbar(
+                    "Transfer Success",
+                    json['hash'],
+                    backgroundColor: Color.fromARGB(100, 109, 116, 104),
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
+                }
               });
             }
             return Container();

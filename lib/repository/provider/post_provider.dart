@@ -58,7 +58,7 @@ class MoonStonePostServiceProvider {
     print('entered get page');
     final uri = Uri.parse(
         _url + "/posts/Market/$address?page=$page&size=10&sort=id,desc");
-    final response = await client.post(uri, headers: header);
+    final response = await client.get(uri, headers: header);
     print(response.body.toString());
     if (200 == response.statusCode) {
       return postResponseFromJson(response.body);
@@ -82,7 +82,8 @@ class MoonStonePostServiceProvider {
   Future<bool> changePrice(String tokenId, double price) async {
     print('tokenId:$tokenId, price:$price');
     final uri = Uri.parse(_url + "/posts/price/$tokenId");
-    final body = jsonEncode({"price": "$price"});
+    final body = jsonEncode({"price": price});
+    print(body);
     final response = await client.put(uri, headers: header, body: body);
     print(response.body.toString());
     if (200 == response.statusCode) {
@@ -97,7 +98,7 @@ class MoonStonePostServiceProvider {
         'sender:${request.sender}, to:${request.to}, token:${request.tokenId}');
     final uri = Uri.parse(_url + "/posts/trade");
     final body = transferRequestToJson(request);
-    final response = await client.post(uri, headers: header, body: body);
+    final response = await client.put(uri, headers: header, body: body);
     print(response.body.toString());
     if (200 == response.statusCode) {
       return response.body.toString();

@@ -1,6 +1,8 @@
+import 'package:application/constants.dart';
 import 'package:application/models/item.dart';
 import 'package:application/screens/Selling/selling_screen.dart';
 import 'package:application/components/default_button.dart';
+import 'package:application/screens/process/item_process.dart';
 import 'package:application/screens/purchasePage/purchase.dart';
 import 'package:application/screens/wallet/components/nft_detail_screen.dart';
 import 'package:flutter/material.dart';
@@ -26,22 +28,83 @@ class DetailsScreen extends StatelessWidget {
         body: Body(product: agrs.product),
         bottomNavigationBar: Visibility(
           child: BottomAppBar(
-            child: DefaultButton(
-              text: NFTDetailScreen.routeName == agrs.route
-                  ? "Go Selling"
-                  : "Buy Now",
-              press: () => Get.toNamed(
-                NFTDetailScreen.routeName == agrs.route
-                    ? SellingScreen.routeName
-                    : PurchaseScreen.routeName,
-                arguments: agrs,
-              ),
-            ),
+            child: checkSellState(agrs.route, agrs.product.sellState)
+                ? DefaultButton(
+                    text: NFTDetailScreen.routeName == agrs.route
+                        ? "Cancel Selling"
+                        : "Buy Now",
+                    press: () {
+                      Get.defaultDialog(
+                        title: 'Confirm',
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Divider(
+                              height: 1,
+                            ),
+                            Text(
+                              "Are you sure cancel selling this item?",
+                              style: TextStyle(color: kTextColor, fontSize: 16),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                TextButton(
+                                  onPressed: () => {},
+                                  child: Text(
+                                    "Cancle",
+                                    style: TextStyle(
+                                        color: kPrimaryColor, fontSize: 16),
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () => {
+                                    Get.toNamed(ItemProcessScreen.routeName,
+                                        arguments: {
+                                          "item": agrs.product,
+                                          "price": 0.0,
+                                        }),
+                                  },
+                                  child: Text(
+                                    "OK",
+                                    style: TextStyle(
+                                        color: kTextColor, fontSize: 16),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        radius: 10.0,
+                      );
+                    },
+                    isButtonDisabled: false)
+                : DefaultButton(
+                    text: NFTDetailScreen.routeName == agrs.route
+                        ? agrs.product.sellState == 3
+                            ? "Wait Please"
+                            : "Go Selling"
+                        : "Buy Now",
+                    press: () => Get.toNamed(
+                          NFTDetailScreen.routeName == agrs.route
+                              ? SellingScreen.routeName
+                              : PurchaseScreen.routeName,
+                          arguments: agrs,
+                        ),
+                    isButtonDisabled: agrs.product.sellState == 3),
           ),
           visible: true,
         ),
       ),
     );
+  }
+
+  bool checkSellState(String? route, int? state) {
+    if (state == null) return true;
+    if (NFTDetailScreen.routeName == route && state > 0)
+      return true;
+    else if (NFTDetailScreen.routeName != route && state != 2) return false;
+    return false;
   }
 }
 

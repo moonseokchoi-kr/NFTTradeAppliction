@@ -2,15 +2,23 @@ import 'package:application/models/Post/post_response.dart';
 import 'package:application/repository/post_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 
 int userPage = 0;
 
 class UserPostController extends GetxController {
   final items = PostResponse().obs;
   final _repository = MoonstonePostRepository();
-  final _user =
-      '0xbc7cc9517400cff0ec953efb585e424301a395b0'; //Hive.box('initApp').get('user_wallet');
+  final _user = Hive.box('initApp').get('user_wallet');
   ScrollController scrollController = ScrollController();
+
+  initUserPostList() async {
+    items.update((val) {
+      if (val != null) val.content.clear();
+      userPage = 0;
+      _fetchUserPostList();
+    });
+  }
 
   _fetchUserPostList() async {
     PostResponse itemModel =
@@ -24,11 +32,7 @@ class UserPostController extends GetxController {
     scrollController.addListener(() {
       if (scrollController.position.pixels ==
           scrollController.position.minScrollExtent) {
-        items.update((val) {
-          if (val != null) val.content.clear();
-          userPage = 0;
-          _fetchUserPostList();
-        });
+        initUserPostList();
       }
     });
   }
@@ -45,7 +49,6 @@ class UserPostController extends GetxController {
 
   @override
   void onInit() {
-    _fetchUserPostList();
     _refreshUserEvent();
     _updateUserEvent();
     super.onInit();

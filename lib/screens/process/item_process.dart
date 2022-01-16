@@ -1,6 +1,7 @@
 import 'package:application/controllers/item_controller.dart';
 import 'package:application/models/item.dart';
 import 'package:application/screens/Selling/selling_body.dart';
+import 'package:application/screens/details/details_screen.dart';
 import 'package:application/screens/wallet/wallet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -17,6 +18,7 @@ class _ItemProcessScreenState extends State<ItemProcessScreen> {
   final _itemController = Get.put(ItemController());
   final Item _item = Get.arguments['item'];
   final _price = Get.arguments['price'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

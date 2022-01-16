@@ -9,11 +9,12 @@ class DefaultButton extends StatelessWidget {
     this.text,
     this.press,
     this.radius = 0,
+    this.isButtonDisabled = false,
   }) : super(key: key);
   final String? text;
   final Function? press;
   final double radius;
-
+  final bool isButtonDisabled;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -24,9 +25,9 @@ class DefaultButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(radius)),
           primary: Colors.white,
-          backgroundColor: kPrimaryColor,
+          backgroundColor: isButtonDisabled ? Colors.grey[600] : kPrimaryColor,
         ),
-        onPressed: press as void Function()?,
+        onPressed: isButtonDisabled ? null : press as void Function()?,
         child: Text(
           text!,
           style: TextStyle(

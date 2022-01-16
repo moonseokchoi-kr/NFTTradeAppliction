@@ -1,3 +1,5 @@
+import 'package:application/controllers/item_controller.dart';
+import 'package:application/controllers/user_post_api_controller.dart';
 import 'package:application/models/Token.dart';
 import 'package:application/arguments/arguments.dart';
 import 'package:application/screens/wallet/components/nft_detail_screen.dart';
@@ -39,6 +41,7 @@ class _CustomWalletTabBarState extends State<CustomWalletTabBar>
 
   @override
   Widget build(BuildContext context) {
+    UserPostController itemController = Get.put(UserPostController());
     return Column(
       children: [
         Container(
