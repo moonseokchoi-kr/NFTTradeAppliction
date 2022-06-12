@@ -10,7 +10,7 @@ final token = Hive.box('initApp').get('moonstone_access_token').toString();
 
 class MoonStonePostServiceProvider {
   Client client = Client();
-  String _url = "http://13.125.152.144:5555";
+  String _url = "http://54.180.114.232:5555";
 
   final header = {
     HttpHeaders.authorizationHeader: token,

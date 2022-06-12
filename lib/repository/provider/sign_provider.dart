@@ -7,7 +7,7 @@ import 'dart:convert';
 
 class MoonStoneSignServiceProvider {
   Client client = Client();
-  String _url = "http://13.125.152.144:5555";
+  String _url = "http://54.180.114.232:5555";
 
   final header = {
     "Content-type": "application/json",
